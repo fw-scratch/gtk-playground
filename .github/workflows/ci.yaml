@@ -6,9 +6,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: debian:testing
     steps:
     - uses: actions/checkout@v3
     - name: Build
       run: |
-        sudo apt-get -y install libgtk-4-1 libgtk-4-dev
+        sudo apt-get -y --no-install-recommends install build-essential libgtk-4-1 libgtk-4-dev
         gcc $(pkg-config --cflags gtk4) -o app app.c $(pkg-config --libs gtk4)
