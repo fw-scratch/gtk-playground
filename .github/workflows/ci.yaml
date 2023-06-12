@@ -18,3 +18,8 @@ jobs:
     - name: Build
       run: |
         gcc $(pkg-config --cflags gtk4) -o app app.c $(pkg-config --libs gtk4)
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: app
