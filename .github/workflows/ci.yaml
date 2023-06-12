@@ -10,7 +10,11 @@ jobs:
       image: debian:testing
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install Build Dependencies
+      run: |
+        apt-get -yqq update && apt-get -yqq --no-install-recommends install build-essential libgtk-4-1 libgtk-4-dev
+
     - name: Build
       run: |
-        apt-get -y --no-install-recommends install build-essential libgtk-4-1 libgtk-4-dev
         gcc $(pkg-config --cflags gtk4) -o app app.c $(pkg-config --libs gtk4)
