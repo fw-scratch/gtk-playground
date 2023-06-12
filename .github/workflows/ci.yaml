@@ -12,5 +12,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: |
-        sudo apt-get -y --no-install-recommends install build-essential libgtk-4-1 libgtk-4-dev
+        apt-get -y --no-install-recommends install build-essential libgtk-4-1 libgtk-4-dev
         gcc $(pkg-config --cflags gtk4) -o app app.c $(pkg-config --libs gtk4)
