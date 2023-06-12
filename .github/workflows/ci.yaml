@@ -1,0 +1,14 @@
+name: CI
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        sudo apt-get -y install libgtk-4-1 libgtk-4-dev
+        gcc $(pkg-config --cflags gtk4) -o app app.c $(pkg-config --libs gtk4)
